@@ -7,11 +7,16 @@ import { SharedModule } from './shared.module';
 
 import { CardModule } from './card/card.module';
 import { CardListComponent } from './card-list/card-list.component';
+import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardListComponent
+    CardListComponent,
+    AddNewDialogComponent
+  ],
+  entryComponents: [
+    AddNewDialogComponent
   ],
   imports: [
     BrowserModule,

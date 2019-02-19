@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-
-enum TaskStatus {
-  TODO,
-  PENDING,
-  COMPLETE
-}
+import { MatDialog } from '@angular/material';
+import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
+import { TaskStatus } from './task/task.enum';
+import { statuses } from './task/task.constants';
 
 enum TimeStatusColor {
   OVERDUE = 'red',
@@ -21,21 +19,7 @@ export class AppComponent {
   date = Date.now();
 
   public TaskStatus = TaskStatus;
-
-  public statuses = [
-    {
-      title: 'Todo',
-      type: TaskStatus.TODO
-    },
-    {
-      title: 'In Progress',
-      type: TaskStatus.PENDING
-    },
-    {
-      title: 'Complete',
-      type: TaskStatus.COMPLETE
-    }
-  ];
+  public statuses = statuses;
 
   public tasks = {
     [TaskStatus.TODO]: [{
@@ -52,5 +36,16 @@ export class AppComponent {
       due_date: Date.now(),
       color: TimeStatusColor.SOON
     }],
+  };
+
+  public constructor(public dialog: MatDialog) {
+  }
+
+  public addTask() {
+    this.dialog.open(AddNewDialogComponent, {
+      maxWidth: '800px',
+      maxHeight: '600px',
+      width: '400px'
+    });
   }
 }

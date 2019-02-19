@@ -2,7 +2,7 @@
   <span e2e-date class="mat-body-strong w-third">{{ date | date }}</span>
   <h1 e2e-title class="w-third tc">Todo</h1>
   <span class="w-third tr">
-    <button e2e-add-task mat-raised-button>
+    <button e2e-add-task mat-raised-button (click)="addTask()" color="primary">
       <mat-icon class="mat-icon" inline>add</mat-icon>
       Add Task
     </button>
