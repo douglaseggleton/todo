@@ -1,0 +1,21 @@
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.flex-basis-third {
+  flex-basis: calc(100% / 3);
+}
+
+.blw2 {
+  border-left-width: 0.5rem;
+}
+
+/**
+ * @todo Make this less hacky, it's duplication tachyons
+ */
+@media screen and (min-width: 48em) {
+  app-card-list:nth-child(even) {
+    border: 0.125rem solid #eee;
+    border-width: 0 0.125rem;
+  }
+}

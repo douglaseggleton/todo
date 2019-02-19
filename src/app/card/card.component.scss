@@ -1,0 +1,39 @@
+:host {
+  position: relative;
+  border-radius: 5px;
+
+  &:Before {
+    content: '';
+    display: block;
+    width: 0.250rem;
+    bottom: -0.125rem;
+    top: -0.125rem;
+    left: -0.125rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+  }
+
+  /**
+   * These will duplicate tachyon color base :-(
+   * @todo Find a better way to do this
+   */
+  &[ng-reflect-color="red"] {
+    &:Before {
+      background-color: #FF4136;
+    }
+  }
+
+  &[ng-reflect-color="orange"] {
+    &:Before {
+      background-color: #FF6300;
+    }
+  }
+
+  &[ng-reflect-color="green"] {
+    &:Before {
+      background-color: #19A974;
+    }
+  }
+}
+
