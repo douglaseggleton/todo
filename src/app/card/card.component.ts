@@ -19,4 +19,15 @@ export class CardComponent {
 
   @Input() public description: string;
 
+  @HostBinding('class.due-now') get isDueNow() {
+    return this.color === 'red';
+  }
+
+  @HostBinding('class.due-soon') get isDueSoon() {
+    return this.color === 'orange';
+  }
+
+  @HostBinding('class.due-later') get isDueLater() {
+    return this.color === 'green';
+  }
 }

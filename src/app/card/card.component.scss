@@ -18,19 +18,19 @@
    * These will duplicate tachyon color base :-(
    * @todo Find a better way to do this
    */
-  &[ng-reflect-color="red"] {
+  &.due-now {
     &:Before {
       background-color: #FF4136;
     }
   }
 
-  &[ng-reflect-color="orange"] {
+  &.due-soon {
     &:Before {
       background-color: #FF6300;
     }
   }
 
-  &[ng-reflect-color="green"] {
+  &.due-later {
     &:Before {
       background-color: #19A974;
     }
