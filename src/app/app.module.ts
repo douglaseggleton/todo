@@ -3,16 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './material.module';
+import { SharedModule } from './shared.module';
+
+import { CardModule } from './card/card.module';
+import { CardListComponent } from './card-list/card-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    SharedModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

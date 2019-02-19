@@ -1,0 +1,18 @@
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.flex-basis-third {
+  flex-basis: calc(100% / 3);
+}
+
+.blw2 {
+  border-left-width: 0.5rem;
+
+}
+
+.blw2::before {
+  content: '';
+  display: block;
+  background: green;
+}

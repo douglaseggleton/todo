@@ -1,0 +1,16 @@
+:host {
+  position: relative;
+  border-radius: 5px;
+
+  &:Before {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    bottom: -0.125rem;
+    top: -0.125rem;
+    left: -0.5rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    position: absolute;
+  }
+}
