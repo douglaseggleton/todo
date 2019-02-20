@@ -8,6 +8,7 @@ import { SharedModule } from './shared.module';
 import { CardModule } from './card/card.module';
 import { CardListComponent } from './card-list/card-list.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
-    CardModule
+    CardModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
