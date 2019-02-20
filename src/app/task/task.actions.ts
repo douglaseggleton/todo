@@ -2,7 +2,8 @@ import { Action } from '@ngrx/store';
 import { Task } from './task.interface';
 
 export enum ActionTypes {
-  AddTask = '[Task] AddTask'
+  AddTask = '[Task] AddTask',
+  DeleteTask = '[Task] DeleteTask'
 }
 
 export class AddTask implements Action {
@@ -10,5 +11,11 @@ export class AddTask implements Action {
   constructor(public payload: Task) {}
 }
 
+export class DeleteTask implements Action {
+  readonly type = ActionTypes.DeleteTask;
+  constructor(public payload: Task['id']) {}
+}
+
 export type Actions =
   | AddTask
+  | DeleteTask

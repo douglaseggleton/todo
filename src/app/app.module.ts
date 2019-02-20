@@ -8,6 +8,7 @@ import { SharedModule } from './shared.module';
 import { CardModule } from './card/card.module';
 import { CardListComponent } from './card-list/card-list.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
+import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule, MetaReducer, ActionReducer } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -27,10 +28,12 @@ const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
   declarations: [
     AppComponent,
     CardListComponent,
-    AddNewDialogComponent
+    AddNewDialogComponent,
+    DeleteTaskDialogComponent
   ],
   entryComponents: [
-    AddNewDialogComponent
+    AddNewDialogComponent,
+    DeleteTaskDialogComponent
   ],
   imports: [
     BrowserModule,

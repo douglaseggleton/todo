@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
+import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { Store, select } from '@ngrx/store';
 import { selectAllTasksByStatus } from './task/task.selectors';
 import { Observable } from 'rxjs';
+import { Task } from './task/task.interface';
 
 @Component({
   selector: 'app-root',
@@ -25,5 +27,13 @@ export class AppComponent {
       maxHeight: '600px',
       width: '400px'
     });
+  }
+
+  public removeTask(task: Task) {
+    this.dialog.open(DeleteTaskDialogComponent, {
+      data: {
+        ...task
+      }
+    })
   }
 }

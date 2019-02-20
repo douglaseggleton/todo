@@ -6,6 +6,8 @@
   <div class="flex-grow-1">{{ description }}</div>
 </div>
 <div class="flex nl2">
-  <button mat-icon-button><mat-icon class="mat-icon">edit</mat-icon></button>
-  <button mat-icon-button><mat-icon class="mat-icon">delete</mat-icon></button>
+  <ng-content select="app-card-actions">
+<!-- <button mat-icon-button><mat-icon class="mat-icon">edit</mat-icon></button>
+  <button mat-icon-button (click)=""><mat-icon class="mat-icon">delete</mat-icon></button> -->
+  </ng-content>
 </div>

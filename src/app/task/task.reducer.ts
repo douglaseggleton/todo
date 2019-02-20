@@ -22,6 +22,8 @@ export function reducer(
       }, {
         ...state
       });
+    case ActionTypes.DeleteTask:
+      return adapter.removeOne(action.payload, state)
     default: {
       return state;
     }

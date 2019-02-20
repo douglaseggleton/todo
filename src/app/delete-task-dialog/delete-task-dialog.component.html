@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Delete Task</h2>
+<mat-dialog-content class="mat-body">Are you sure you want to delete <strong>{{ data.title }}</strong>?</mat-dialog-content>
+<mat-dialog-actions class="flex fr">
+  <button mat-raised-button mat-dialog-close>
+    <mat-icon inline>cancel</mat-icon>
+    Cancel
+  </button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">
+    <mat-icon inline>delete</mat-icon>
+    Confirm
+  </button>
+</mat-dialog-actions>
