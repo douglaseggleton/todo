@@ -1,6 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { statuses, TaskStatus } from './../task';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { AddTask } from './../task/task.actions';
+
 
 @Component({
   selector: 'app-add-new-dialog',
@@ -26,11 +29,10 @@ export class AddNewDialogComponent {
     ]
   })
 
-  public constructor(private fb: FormBuilder) {
-
+  public constructor(private fb: FormBuilder, private store: Store<any>) {
   }
 
   public onSubmit() {
-    console.log(this.addNewForm.value);
+    this.store.dispatch(new AddTask(this.addNewForm.value));
   }
 }

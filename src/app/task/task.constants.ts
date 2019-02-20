@@ -1,4 +1,4 @@
-import { TaskStatus } from './task.enum';
+import { TaskStatus } from './task-status.enum';
 
 export const statuses = [
   {

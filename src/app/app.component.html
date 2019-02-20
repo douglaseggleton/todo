@@ -18,9 +18,9 @@
 </div>
 
 <div class="list flex flex-column flex-row-l mat-body-strong w-100">
-  <app-card-list *ngFor="let status of statuses" [title]="status.title">
-    <app-card *ngFor="let task of tasks[status.type]" [due]="task.due"
-      [date]="task.due_date"
+  <app-card-list *ngFor="let status of (tasksByStatus$ | async)" [title]="status.title">
+    <app-card *ngFor="let task of status.tasks" [due]="task.due"
+      [date]="task.date"
       [title]="task.title"
       [description]="task.description">
     </app-card>

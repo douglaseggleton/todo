@@ -9,6 +9,9 @@ import { CardModule } from './card/card.module';
 import { CardListComponent } from './card-list/card-list.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { TaskModule } from './task/task.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     SharedModule,
     CardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
+    TaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
