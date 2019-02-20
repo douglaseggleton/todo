@@ -31,4 +31,8 @@ export class CardComponent {
   @HostBinding('class.due-later') get isDueLater() {
     return this.due === TaskDueStatus.LATER;
   }
+
+  @HostBinding('class.due-never') get isDueNever() {
+    return this.due === TaskDueStatus.NEVER;
+  }
 }

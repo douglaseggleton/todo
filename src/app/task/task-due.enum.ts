@@ -1,5 +1,6 @@
 export enum TaskDueStatus {
   NOW,
   SOON,
-  LATER
+  LATER,
+  NEVER
 }

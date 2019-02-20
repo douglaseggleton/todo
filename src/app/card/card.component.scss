@@ -35,5 +35,11 @@
       background-color: #19A974;
     }
   }
+
+  &.due-never {
+    &:Before {
+      background-color: #CCCCCC;
+    }
+  }
 }
 

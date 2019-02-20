@@ -14,11 +14,13 @@ export const {
 } = adapter.getSelectors(getTaskState);
 
 
-export const calculateStatus = (date, today) => {
+export const calculateDueStatus = (date, today, isComplete) => {
   date = moment(date);
   today = moment(today);
   const diff = date.diff(today, 'days');
-  if (diff <= 1) {
+  if (isComplete) {
+    return TaskDueStatus.NEVER
+  } else if (diff <= 1) {
     return TaskDueStatus.NOW;
   } else if (diff <= 7) {
     return TaskDueStatus.SOON;
@@ -44,7 +46,7 @@ export const selectAllTasksWithDueStatus = createSelector(
   selectTasksSortedByDate,
   (tasks) => tasks.map((task) => ({
     ...task,
-    due: calculateStatus(task.date, new Date())
+    due: calculateDueStatus(task.date, new Date(), task.status === TaskStatus.COMPLETE)
   }
 )));
 
