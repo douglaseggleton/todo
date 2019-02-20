@@ -29,6 +29,17 @@ export class AppComponent {
     });
   }
 
+  public editTask(task: Task) {
+    this.dialog.open(AddNewDialogComponent, {
+      maxWidth: '800px',
+      maxHeight: '600px',
+      width: '400px',
+      data: {
+        ...task
+      }
+    });
+  }
+
   public removeTask(task: Task) {
     this.dialog.open(DeleteTaskDialogComponent, {
       data: {

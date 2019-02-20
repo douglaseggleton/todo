@@ -1,9 +1,10 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { statuses, TaskStatus } from './../task';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { AddTask } from './../task/task.actions';
-import { MatDialogRef } from '@angular/material'; 
+import { AddTask, DeleteTask } from './../task/task.actions';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'; 
+import { Task } from '../task/task.interface';
 
 
 @Component({
@@ -17,15 +18,15 @@ export class AddNewDialogComponent {
   public statuses = statuses;
 
   public addNewForm = this.fb.group({
-    title: ['',
+    title: [this.data ? this.data.title : '',
       Validators.required
     ],
-    description: [''],
-    date: [(new Date()),
+    description: [this.data ? this.data.description : ''],
+    date: [this.data ? this.data.date : new Date(),
       Validators.required
     ],
     status: [
-      TaskStatus.TODO,
+      this.data ? this.data.status : TaskStatus.TODO,
       Validators.required
     ]
   })
@@ -33,10 +34,17 @@ export class AddNewDialogComponent {
   public constructor(
     private fb: FormBuilder,
     private store: Store<any>,
-    private dialogRef: MatDialogRef<AddNewDialogComponent>) {
+    private dialogRef: MatDialogRef<AddNewDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Task) {
   }
 
   public onSubmit() {
+    // Immutable Tasks, Get Rid of the Old One
+    if (this.data) {
+      this.store.dispatch(new DeleteTask(this.data.id));
+    }
+
+    // Create a new one Regardless
     this.store.dispatch(new AddTask(this.addNewForm.value));
     this.dialogRef.close();
   }
