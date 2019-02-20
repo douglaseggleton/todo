@@ -1,4 +1,5 @@
-import { Component, Input, ChangeDetectionStrategy, SimpleChanges, HostBinding } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, HostBinding } from '@angular/core';
+import { TaskDueStatus } from './../task';
 
 @Component({
   selector: 'app-card',
@@ -6,12 +7,12 @@ import { Component, Input, ChangeDetectionStrategy, SimpleChanges, HostBinding }
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'db ba bw1 b--light-gray bg-white mv2 blw1 pa3 pv2 tl'
+    class: 'db ba bw0 bg-white mv2 blw2 pa3 pv2 tl mat-elevation-z2'
   }
 })
 export class CardComponent {
 
-  @Input() public color: string;
+  @Input() public due: TaskDueStatus;
 
   @Input() public date: string;
 
@@ -20,14 +21,14 @@ export class CardComponent {
   @Input() public description: string;
 
   @HostBinding('class.due-now') get isDueNow() {
-    return this.color === 'red';
+    return this.due ===  TaskDueStatus.NOW;
   }
 
   @HostBinding('class.due-soon') get isDueSoon() {
-    return this.color === 'orange';
+    return this.due === TaskDueStatus.SOON;
   }
 
   @HostBinding('class.due-later') get isDueLater() {
-    return this.color === 'green';
+    return this.due === TaskDueStatus.LATER;
   }
 }

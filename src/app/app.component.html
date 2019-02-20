@@ -1,25 +1,25 @@
-<mat-toolbar class="justify-between bb bw1 b--light-gray" style="background: white;">
+<mat-toolbar class="justify-between" color="primary">
   <span e2e-date class="mat-body-strong w-third">{{ date | date }}</span>
   <h1 e2e-title class="w-third tc">Todo</h1>
   <span class="w-third tr">
-    <button e2e-add-task mat-raised-button (click)="addTask()" color="primary">
+    <button e2e-add-task mat-button (click)="addTask()">
       <mat-icon class="mat-icon" inline>add</mat-icon>
       Add Task
     </button>
   </span>
 </mat-toolbar>
 
-<div class="flex justify-center pa2">
+<div class="flex justify-center pa3">
   <ul class="list flex justify-between mat-body-strong pa0">
-    <li class="bl bw2 br1 ph4 red">Urgent</li>
-    <li class="bl bw2 br1 ph4 orange">Soon</li>
-    <li class="bl bw2 br1 ph4 green">Later</li>
+    <li class="bl br2 mh1 ph4 pv2 bg-red white">Urgent</li>
+    <li class="bl br2 mh1 ph4 pv2 bg-orange white">Soon</li>
+    <li class="bl br2 mh1 ph4 pv2 bg-green white">Later</li>
   </ul>
 </div>
 
 <div class="list flex flex-column flex-row-l mat-body-strong w-100">
   <app-card-list *ngFor="let status of statuses" [title]="status.title">
-    <app-card *ngFor="let task of tasks[status.type]" [color]="task.color" 
+    <app-card *ngFor="let task of tasks[status.type]" [due]="task.due"
       [date]="task.due_date"
       [title]="task.title"
       [description]="task.description">

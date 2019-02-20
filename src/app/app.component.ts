@@ -2,13 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 import { TaskStatus } from './task/task.enum';
+import { TaskDueStatus } from './task/task-due.enum';
 import { statuses } from './task/task.constants';
-
-enum TimeStatusColor {
-  OVERDUE = 'red',
-  SOON = 'orange',
-  LATER = 'green'
-}
 
 @Component({
   selector: 'app-root',
@@ -27,14 +22,14 @@ export class AppComponent {
       title: 'Test Task 1',
       description: 'Description of task 1',
       due_date: Date.now(),
-      color: TimeStatusColor.OVERDUE
+      due: TaskDueStatus.NOW
     }],
     [TaskStatus.PENDING]: [{
       status: TaskStatus.PENDING,
       title: 'Test Task 2',
       description: 'Description of task 2',
       due_date: Date.now(),
-      color: TimeStatusColor.SOON
+      due: TaskDueStatus.SOON
     }],
   };
 
