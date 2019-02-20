@@ -9,9 +9,19 @@ import { CardModule } from './card/card.module';
 import { CardListComponent } from './card-list/card-list.component';
 import { AddNewDialogComponent } from './add-new-dialog/add-new-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, MetaReducer, ActionReducer } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { localStorageSync } from 'ngrx-store-localstorage';
+
 import { TaskModule } from './task/task.module';
+
+export function localStorageSyncReducer(reducer: ActionReducer<any>): ActionReducer<any> {
+  return localStorageSync({
+    keys: ['task'],
+    rehydrate: true
+  })(reducer);
+}
+const metaReducers: Array<MetaReducer<any, any>> = [localStorageSyncReducer];
 
 @NgModule({
   declarations: [
@@ -28,7 +38,7 @@ import { TaskModule } from './task/task.module';
     SharedModule,
     CardModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({}, {metaReducers}),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
     }),
