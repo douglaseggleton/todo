@@ -45,6 +45,6 @@ export class AppComponent {
       data: {
         ...task
       }
-    })
+    });
   }
 }

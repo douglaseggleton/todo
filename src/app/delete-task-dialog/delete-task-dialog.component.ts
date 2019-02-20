@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { DeleteTask } from './../task/task.actions';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'; 
-
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-delete-task-dialog',

@@ -18,4 +18,4 @@ export class DeleteTask implements Action {
 
 export type Actions =
   | AddTask
-  | DeleteTask
+  | DeleteTask;

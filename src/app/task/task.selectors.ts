@@ -19,13 +19,13 @@ export const calculateStatus = (date, today) => {
   today = moment(today);
   const diff = date.diff(today, 'days');
   if (diff <= 1) {
-    return TaskDueStatus.NOW
+    return TaskDueStatus.NOW;
   } else if (diff <= 7) {
-    return TaskDueStatus.SOON
+    return TaskDueStatus.SOON;
   } else {
-    return TaskDueStatus.LATER
+    return TaskDueStatus.LATER;
   }
-}
+};
 
 export const selectTasksSortedByDate = createSelector(
   getAllTasks,
@@ -44,7 +44,7 @@ export const selectAllTasksWithDueStatus = createSelector(
   selectTasksSortedByDate,
   (tasks) => tasks.map((task) => ({
     ...task,
-    due: calculateStatus(task.date, new Date()) 
+    due: calculateStatus(task.date, new Date())
   }
 )));
 
@@ -63,6 +63,6 @@ export const selectAllTasksByStatus = createSelector(
       title: 'Complete',
       type: TaskStatus.COMPLETE,
       tasks: tasks.filter((task) => task.status === TaskStatus.COMPLETE)
-    }]
+    }];
   }
-)
+);

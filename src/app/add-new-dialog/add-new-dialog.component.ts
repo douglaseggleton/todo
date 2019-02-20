@@ -3,9 +3,8 @@ import { statuses, TaskStatus } from './../task';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AddTask, DeleteTask } from './../task/task.actions';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'; 
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Task } from '../task/task.interface';
-
 
 @Component({
   selector: 'app-add-new-dialog',
@@ -29,7 +28,7 @@ export class AddNewDialogComponent {
       this.data ? this.data.status : TaskStatus.TODO,
       Validators.required
     ]
-  })
+  });
 
   public constructor(
     private fb: FormBuilder,
