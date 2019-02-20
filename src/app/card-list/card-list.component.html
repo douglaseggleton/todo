@@ -1,4 +1,4 @@
-<header><h2 class="gray">{{ title }}</h2></header>
-<div class="ph4">
-  <ng-content></ng-content>
-</div>
+<header class="mb1">
+  <h2 class="gray"><ng-content select="app-card-list-title"></ng-content></h2>
+</header>
+<ng-content select="app-card-list-dropzone"></ng-content>

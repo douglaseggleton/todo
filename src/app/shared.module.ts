@@ -8,6 +8,9 @@ import {
   MatNativeDateModule,
   MatSelectModule
 } from '@angular/material';
+import {
+  DragDropModule
+} from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 
 const SHARED_MODULES = [
@@ -18,7 +21,8 @@ const SHARED_MODULES = [
   MatInputModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule,
+  DragDropModule
 ];
 
 @NgModule({

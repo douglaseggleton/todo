@@ -1,13 +1,12 @@
-<div class="flex justify-between">
-  <h3 class="tl mat-h3 mb2"><strong>{{ title }}</strong></h3>
-  <span class="gray">Due on {{ date | date }}</span>
-</div>
-<div class="flex justify-between mat-body mb2">
-  <div class="flex-grow-1">{{ description }}</div>
-</div>
-<div class="flex nl2">
-  <ng-content select="app-card-actions">
-<!-- <button mat-icon-button><mat-icon class="mat-icon">edit</mat-icon></button>
-  <button mat-icon-button (click)=""><mat-icon class="mat-icon">delete</mat-icon></button> -->
-  </ng-content>
+<div class="pv2 ph3 ml1">
+  <div class="flex justify-between">
+    <h3 class="tl mat-h3 mb2"><strong>{{ title }}</strong></h3>
+    <span class="gray mat-body">Due on {{ date | date }}</span>
+  </div>
+  <div class="flex justify-between mat-body mb2">
+    <div class="flex-grow-1">{{ description }}</div>
+  </div>
+  <div class="flex nl2">
+    <ng-content select="app-card-actions"></ng-content>
+  </div>
 </div>

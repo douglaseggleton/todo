@@ -7,7 +7,7 @@ import { TaskDueStatus } from './../task';
   styleUrls: ['./card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'db ba bw0 bg-white mv2 blw2 pa3 pv2 tl mat-elevation-z2'
+    class: 'db bw0 bg-white tl mat-elevation-z2 mb2'
   }
 })
 export class CardComponent {

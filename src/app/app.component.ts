@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { selectAllTasksByStatus } from './task/task.selectors';
 import { Observable } from 'rxjs';
 import { Task } from './task/task.interface';
+import { UpdateTask } from './task/task.actions';
 
 @Component({
   selector: 'app-root',
@@ -46,5 +47,14 @@ export class AppComponent {
         ...task
       }
     });
+  }
+
+  public dropTask(event: any) {
+    this.store.dispatch(new UpdateTask({
+      id: event.item.data.id,
+      changes: {
+        status: event.container.data.type
+      }
+    }));
   }
 }

@@ -17,16 +17,21 @@
   </ul>
 </div>
 
-<div class="list flex flex-column flex-row-l mat-body-strong w-100">
-  <app-card-list *ngFor="let status of (tasksByStatus$ | async)" [title]="status.title">
-    <app-card *ngFor="let task of status.tasks" [due]="task.due"
-      [date]="task.date"
-      [title]="task.title"
-      [description]="task.description">
-      <app-card-actions>
-        <button mat-icon-button (click)="editTask(task)"><mat-icon class="mat-icon">edit</mat-icon></button>
-        <button mat-icon-button (click)="removeTask(task)"><mat-icon class="mat-icon">delete</mat-icon></button>
-      </app-card-actions>
-    </app-card>
+<div class="list flex flex-column flex-row-l mat-body-strong w-100" cdkDropListGroup>
+  <app-card-list *ngFor="let status of (tasksByStatus$ | async)" [title]="status.title" (dropped)="dropTask($event)">
+    <app-card-list-title>
+      {{ status.title }}
+    </app-card-list-title>
+    <app-card-list-dropzone cdkDropList (cdkDropListDropped)="dropTask($event)" [cdkDropListData]="status">
+      <app-card *ngFor="let task of status.tasks" [due]="task.due"
+        [date]="task.date"
+        [title]="task.title"
+        [description]="task.description" cdkDrag [cdkDragData]="task">
+        <app-card-actions>
+          <button mat-icon-button (click)="editTask(task)"><mat-icon class="mat-icon">edit</mat-icon></button>
+          <button mat-icon-button (click)="removeTask(task)"><mat-icon class="mat-icon">delete</mat-icon></button>
+        </app-card-actions>
+      </app-card>
+    </app-card-list-dropzone>
   </app-card-list>
 </div>
