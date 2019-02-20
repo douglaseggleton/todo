@@ -3,6 +3,7 @@ import { statuses, TaskStatus } from './../task';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AddTask } from './../task/task.actions';
+import { MatDialogRef } from '@angular/material'; 
 
 
 @Component({
@@ -29,10 +30,14 @@ export class AddNewDialogComponent {
     ]
   })
 
-  public constructor(private fb: FormBuilder, private store: Store<any>) {
+  public constructor(
+    private fb: FormBuilder,
+    private store: Store<any>,
+    private dialogRef: MatDialogRef<AddNewDialogComponent>) {
   }
 
   public onSubmit() {
     this.store.dispatch(new AddTask(this.addNewForm.value));
+    this.dialogRef.close();
   }
 }
