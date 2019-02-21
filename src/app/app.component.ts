@@ -6,7 +6,9 @@ import { Store, select } from '@ngrx/store';
 import { selectAllTasksByStatus } from './task/task.selectors';
 import { Observable } from 'rxjs';
 import { Task } from './task/task.interface';
-import { UpdateTask, UpdateOrder } from './task/task.actions';
+import { MoveTask } from './task/task.actions';
+import { CdkDragSortEvent } from '@angular/cdk/drag-drop';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -49,16 +51,13 @@ export class AppComponent {
     });
   }
 
-  public dropTask(event: any) {
-    this.store.dispatch(new UpdateOrder({
+  public dropTask(event: CdkDragSortEvent) {
+    this.store.dispatch(new MoveTask({
       id: event.item.data.id,
-      order: event.currentIndex
-    }));
-    this.store.dispatch(new UpdateTask({
-      id: event.item.data.id,
-      changes: {
-        status: event.container.data.type
-      }
+      currentIndex: event.currentIndex,
+      previousIndex: event.previousIndex,
+      currentStatus: event.container.data.type,
+      previousStatus: event.item.data.status
     }));
   }
 }

@@ -40,7 +40,7 @@ export class AddNewDialogComponent {
   public onSubmit() {
     // Immutable Tasks, Get Rid of the Old One
     if (this.data) {
-      this.store.dispatch(new DeleteTask(this.data.id));
+      this.store.dispatch(new DeleteTask(this.data));
     }
 
     // Create a new one Regardless

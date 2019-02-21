@@ -29,44 +29,39 @@ export const calculateDueStatus = (date, today, isComplete) => {
   }
 };
 
-const getOrder = (state) => state.order;
-
 export const selectOrder = createSelector(
   getTaskState,
   (state) => state.order
 )
 
-export const selectTasksSortedByOrder = createSelector(
-  getAllTasks,
-  selectOrder,
-  (tasks, order) => tasks.sort((a, b) => {  
-      return order.indexOf(a.id) - order.indexOf(b.id);
-    })
-);
-
 export const selectAllTasksWithDueStatus = createSelector(
-  selectTasksSortedByOrder,
+  getAllTasks,
   (tasks) => tasks.map((task) => ({
     ...task,
     due: calculateDueStatus(task.date, new Date(), task.status === TaskStatus.COMPLETE)
   }
 )));
 
+const filterByStatus = (status: TaskStatus) => (task: Task) => task.status === status;
+
+const sortByOrder = (order) => (a, b) => order.indexOf(a.id) - order.indexOf(b.id);
+
 export const selectAllTasksByStatus = createSelector(
   selectAllTasksWithDueStatus,
-  (tasks) => {
+  selectOrder,
+  (tasks, order) => {
     return [{
       title: 'Todo',
       type: TaskStatus.TODO,
-      tasks: tasks.filter((task) => task.status === TaskStatus.TODO)
+      tasks: tasks.filter(filterByStatus(TaskStatus.TODO)).sort(sortByOrder(order[TaskStatus.TODO]))
     }, {
       title: 'In Progress',
       type: TaskStatus.PENDING,
-      tasks: tasks.filter((task) => task.status === TaskStatus.PENDING)
+      tasks: tasks.filter(filterByStatus(TaskStatus.PENDING)).sort(sortByOrder(order[TaskStatus.PENDING]))
     }, {
       title: 'Complete',
       type: TaskStatus.COMPLETE,
-      tasks: tasks.filter((task) => task.status === TaskStatus.COMPLETE)
+      tasks: tasks.filter(filterByStatus(TaskStatus.COMPLETE)).sort(sortByOrder(order[TaskStatus.COMPLETE]))
     }];
   }
 );

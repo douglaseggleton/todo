@@ -16,7 +16,7 @@ export class DeleteTaskDialogComponent {
   }
 
   public onConfirm() {
-    this.store.dispatch(new DeleteTask(this.data.id));
+    this.store.dispatch(new DeleteTask(this.data));
     this.dialogRef.close();
   }
 }

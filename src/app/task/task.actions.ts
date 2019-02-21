@@ -1,12 +1,11 @@
 import { Action } from '@ngrx/store';
-import { Update } from '@ngrx/entity';
 import { Task } from './task.interface';
+import { TaskStatus } from './task-status.enum';
 
 export enum ActionTypes {
   AddTask = '[Task] AddTask',
   DeleteTask = '[Task] DeleteTask',
-  UpdateTask = '[Task] UpdateTask',
-  UpdateOrder = '[Task] UpdateOrder'
+  MoveTask = '[Task] MoveTask' 
 }
 
 export class AddTask implements Action {
@@ -16,24 +15,21 @@ export class AddTask implements Action {
 
 export class DeleteTask implements Action {
   readonly type = ActionTypes.DeleteTask;
-  constructor(public payload: Task['id']) {}
+  constructor(public payload: Task) {}
 }
 
-export class UpdateTask implements Action {
-  readonly type = ActionTypes.UpdateTask;
-  constructor(public payload: Update<Task>) {}
-}
-
-export class UpdateOrder implements Action {
-  readonly type = ActionTypes.UpdateOrder;
+export class MoveTask implements Action {
+  readonly type = ActionTypes.MoveTask;
   constructor(public payload: {
     id: string;
-    order: number;
+    previousIndex: number;
+    previousStatus: TaskStatus;
+    currentIndex: number;
+    currentStatus: TaskStatus
   }) {}
 }
 
 export type Actions =
   | AddTask
   | DeleteTask
-  | UpdateTask
-  | UpdateOrder;
+  | MoveTask;
