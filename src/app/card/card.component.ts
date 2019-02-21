@@ -20,19 +20,19 @@ export class CardComponent {
 
   @Input() public description: string;
 
-  @HostBinding('class.due-now') get isDueNow() {
-    return this.due ===  TaskDueStatus.NOW;
+  @HostBinding('class.card-red') get isRed() {
+    return this.due ===  TaskDueStatus.OVERDUE;
   }
 
-  @HostBinding('class.due-soon') get isDueSoon() {
-    return this.due === TaskDueStatus.SOON;
+  @HostBinding('class.card-orange') get isOrange() {
+    return this.due === TaskDueStatus.LESS_THAN_WEEK;
   }
 
-  @HostBinding('class.due-later') get isDueLater() {
-    return this.due === TaskDueStatus.LATER;
+  @HostBinding('class.card-green') get isGreen() {
+    return this.due === TaskDueStatus.MORE_THAN_WEEK;
   }
 
-  @HostBinding('class.due-never') get isDueNever() {
+  @HostBinding('class.card-gray') get isGray() {
     return this.due === TaskDueStatus.NEVER;
   }
 }

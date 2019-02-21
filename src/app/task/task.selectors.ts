@@ -20,12 +20,12 @@ export const calculateDueStatus = (date, today, isComplete) => {
   const diff = date.diff(today, 'days');
   if (isComplete) {
     return TaskDueStatus.NEVER
-  } else if (diff <= 1) {
-    return TaskDueStatus.NOW;
+  } else if (diff <= 0) {
+    return TaskDueStatus.OVERDUE;
   } else if (diff <= 7) {
-    return TaskDueStatus.SOON;
+    return TaskDueStatus.LESS_THAN_WEEK;
   } else {
-    return TaskDueStatus.LATER;
+    return TaskDueStatus.MORE_THAN_WEEK;
   }
 };
 

@@ -1,6 +1,6 @@
 export enum TaskDueStatus {
-  NOW,
-  SOON,
-  LATER,
+  OVERDUE,
+  LESS_THAN_WEEK,
+  MORE_THAN_WEEK,
   NEVER
 }
