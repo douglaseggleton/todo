@@ -29,21 +29,23 @@ export const calculateDueStatus = (date, today, isComplete) => {
   }
 };
 
-export const selectTasksSortedByDate = createSelector(
+const getOrder = (state) => state.order;
+
+export const selectOrder = createSelector(
+  getTaskState,
+  (state) => state.order
+)
+
+export const selectTasksSortedByOrder = createSelector(
   getAllTasks,
-  (tasks) => tasks.sort((a: Task, b: Task) => {
-    if (moment(a.date).isBefore(b.date)) {
-      return -1;
-    } else if (moment(b.date).isBefore(a.date)) {
-      return 1;
-    } else {
-      return 0;
-    }
-  })
+  selectOrder,
+  (tasks, order) => tasks.sort((a, b) => {  
+      return order.indexOf(a.id) - order.indexOf(b.id);
+    })
 );
 
 export const selectAllTasksWithDueStatus = createSelector(
-  selectTasksSortedByDate,
+  selectTasksSortedByOrder,
   (tasks) => tasks.map((task) => ({
     ...task,
     due: calculateDueStatus(task.date, new Date(), task.status === TaskStatus.COMPLETE)

@@ -5,7 +5,8 @@ import { Task } from './task.interface';
 export enum ActionTypes {
   AddTask = '[Task] AddTask',
   DeleteTask = '[Task] DeleteTask',
-  UpdateTask = '[Task] UpdateTask'
+  UpdateTask = '[Task] UpdateTask',
+  UpdateOrder = '[Task] UpdateOrder'
 }
 
 export class AddTask implements Action {
@@ -23,7 +24,16 @@ export class UpdateTask implements Action {
   constructor(public payload: Update<Task>) {}
 }
 
+export class UpdateOrder implements Action {
+  readonly type = ActionTypes.UpdateOrder;
+  constructor(public payload: {
+    id: string;
+    order: number;
+  }) {}
+}
+
 export type Actions =
   | AddTask
   | DeleteTask
-  | UpdateTask;
+  | UpdateTask
+  | UpdateOrder;

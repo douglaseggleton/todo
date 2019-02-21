@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { selectAllTasksByStatus } from './task/task.selectors';
 import { Observable } from 'rxjs';
 import { Task } from './task/task.interface';
-import { UpdateTask } from './task/task.actions';
+import { UpdateTask, UpdateOrder } from './task/task.actions';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +50,10 @@ export class AppComponent {
   }
 
   public dropTask(event: any) {
+    this.store.dispatch(new UpdateOrder({
+      id: event.item.data.id,
+      order: event.currentIndex
+    }));
     this.store.dispatch(new UpdateTask({
       id: event.item.data.id,
       changes: {
