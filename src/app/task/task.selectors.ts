@@ -19,7 +19,7 @@ export const calculateDueStatus = (date, today, isComplete) => {
   today = moment(today);
   const diff = date.diff(today, 'days');
   if (isComplete) {
-    return TaskDueStatus.NEVER
+    return TaskDueStatus.NEVER;
   } else if (diff <= 0) {
     return TaskDueStatus.OVERDUE;
   } else if (diff <= 7) {
@@ -32,7 +32,7 @@ export const calculateDueStatus = (date, today, isComplete) => {
 export const selectOrder = createSelector(
   getTaskState,
   (state) => state.order
-)
+);
 
 export const selectAllTasksWithDueStatus = createSelector(
   getAllTasks,

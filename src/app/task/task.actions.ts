@@ -5,7 +5,7 @@ import { TaskStatus } from './task-status.enum';
 export enum ActionTypes {
   AddTask = '[Task] AddTask',
   DeleteTask = '[Task] DeleteTask',
-  MoveTask = '[Task] MoveTask' 
+  MoveTask = '[Task] MoveTask'
 }
 
 export class AddTask implements Action {

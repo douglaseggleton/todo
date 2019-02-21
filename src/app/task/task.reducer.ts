@@ -7,7 +7,7 @@ import uuid from 'uuid/v4';
 export interface State extends EntityState<Task> {
   order: {
     [Key in TaskStatus]: Array<Task['id']>;
-  }
+  };
 }
 
 export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>({});
@@ -19,6 +19,8 @@ export const initialState: State = adapter.getInitialState({
     [TaskStatus.COMPLETE]: []
   }
 });
+
+const filterById = (payloadId) => (id) => id !== payloadId;
 
 export function reducer(
   state = initialState,
@@ -44,19 +46,18 @@ export function reducer(
         order: {
           ...state.order,
           // Cleanup any ordering data
-          [action.payload.status]: state.order[action.payload.status].filter((id) => id !== action.payload.id)
+          [action.payload.status]: state.order[action.payload.status].filter(filterById(action.payload.id))
         }
       });
     case ActionTypes.MoveTask:
       // Remove from previous status
       const order = {
         ...state.order,
-        [action.payload.previousStatus]: state.order[action.payload.previousStatus].filter(
-          (id) => id !== action.payload.id)
+        [action.payload.previousStatus]: state.order[action.payload.previousStatus].filter(filterById(action.payload.id))
       };
-      
+
       // Insert the new order
-      order[action.payload.currentStatus].splice(action.payload.currentIndex, 0, action.payload.id)
+      order[action.payload.currentStatus].splice(action.payload.currentIndex, 0, action.payload.id);
 
       return adapter.updateOne({
         id: action.payload.id,
